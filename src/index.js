@@ -1,13 +1,54 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import Animate from "./Components/frameAnimate/Animate";
+import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
+import ReactFacts from "./Components/react-fun-facts/ReactFacts";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <div className="links container">
+        <Link
+          to="/"
+          style={{
+            color: "#ffffff",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          {" "}
+          React Fun Facts
+        </Link>
+        <Link
+          to="/CatFacts"
+          style={{
+            color: "#ffffff",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          Cats Facts
+        </Link>
+        <Link
+          to="/modal"
+          style={{
+            color: "#ffffff",
+            textDecoration: "none",
+            cursor: "pointer",
+          }}
+        >
+          Framer Motion Modal Animation
+        </Link>
+      </div>
+      <Routes>
+        <Route path="/" element={<ReactFacts />} />
+        <Route path="/CatFacts" element={<App />} />
+        <Route path="/modal" element={<Animate />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 

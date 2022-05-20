@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Axios from "axios";
 
 function App() {
+  const [facts, setFacts] = useState("");
+
+  const getFacts = () => {
+    Axios.get("https://catfact.ninja/fact").then((response) => {
+      setFacts(response.data.fact);
+    });
+  };
+
+  // console.log(getFacts());
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="App-header">
+        <h2 className="facts__title">Amazing Facts about Cats</h2>
+        {/* <h4>Click the Button Below to get random facts about Cats</h4> */}
+
+        <div className="facts__display">{facts}</div>
+        <button className="get__facts--btn" onClick={getFacts}>
+          Get Cat Fact
+        </button>
+      </div>
     </div>
   );
 }
